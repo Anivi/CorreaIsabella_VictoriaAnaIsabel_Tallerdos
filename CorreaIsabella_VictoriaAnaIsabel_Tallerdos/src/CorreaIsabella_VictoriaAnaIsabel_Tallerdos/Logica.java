@@ -24,8 +24,15 @@ public class Logica {
 		pantalla[1] = app.loadImage("fondo.png");
 		pantalla[2] = app.loadImage("perdiste.png");
 		pantalla[3] = app.loadImage("ganaste.png");
+		for (int i = 0; i < 6; i++) {
+			ors.add(new Automators(app));
+		}
+		for (int i = 0; i < ors.size(); i++) {
+		ors.get(i).start();	
+		}
 		sai = new Saini(app, 0, 0);
 		sai.start();
+		
 	}
 
 	public void pintar() {
@@ -43,6 +50,10 @@ public class Logica {
 			app.fill(255);
 			app.ellipse(1193, 691, 80, 80);
 			sai.pintar();
+			for (int i = 0; i < ors.size(); i++) {
+				ors.get(i).pintar();
+				ors.get(i).mover();
+			}
 
 			break;
 		case 2:
@@ -82,5 +93,9 @@ public class Logica {
 
 	public void tecla() {
 		sai.mover();
+	}
+	
+	public void soltar() {
+		sai.noMover();
 	}
 }
