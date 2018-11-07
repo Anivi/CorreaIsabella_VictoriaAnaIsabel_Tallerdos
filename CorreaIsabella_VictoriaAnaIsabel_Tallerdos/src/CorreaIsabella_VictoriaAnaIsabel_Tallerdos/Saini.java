@@ -43,36 +43,65 @@ public class Saini extends Thread {
 			break;
 		}
 		switch (mover) {
+		case 0 :
+			break;
 		case 1:
+			if (pos.y - 40 >= 40) {
 			pos.y -= 2;
+			}else {
+				if(camy<=-40)
+				camy += 2;
+			}
+			break;
+		case 2:
+			if (pos.y + 40 <= app.height - 80) {
+			pos.y += 2;
+			}else {
+				if(camy>=1400)
+				camy -= 2;
+			}
+			break;
+		case 3:
+			if (pos.x - 50 >= 0) {
+			pos.x -= 2;
+			}else {
+				if(camx<= -5)
+				camx += 2;
+		}
+			break;
+		case 4:
+			if (pos.x + 50 <= app.width - 50) {
+			pos.x += 2;
+			}else {
+				if(camx>= -1200)
+				camx -= 2;
+			}
 			break;
 		}
 //		app.image(sai[2], pos.x, pos.y);
 	}
 
 	public void mover() {
-		if (app.keyCode == app.UP) {
-			sain = 1;
-			mover = 1;
-		}
+	
 		switch (app.keyCode) {
 		case PApplet.UP:
 			sain = 1;
-			pos.y -= 2;
+			mover=1;
 			break;
 		case PApplet.DOWN:
 			sain = 1;
-			pos.y += 2;
+			mover=2;
 			break;
 		case PApplet.RIGHT:
 			sain = 2;
-			pos.x += 2;
+			mover=4;
 			break;
 		case PApplet.LEFT:
 			sain = 3;
-			pos.x -= 2;
+			mover=3;
 			break;
 		}
+		
 //		if (app.keyPressed == true) {
 //			if (app.keyCode == app.UP) {
 //				sain = 1;
@@ -110,6 +139,10 @@ public class Saini extends Thread {
 //			}
 //		}
 	}
+	public void noMover() {
+if(app.keyPressed ==false)
+		mover = 0;
+	}
 
 	public void run() {
 
@@ -131,4 +164,5 @@ public class Saini extends Thread {
 		this.camy = camy;
 	}
 
+	
 }
